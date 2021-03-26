@@ -103,3 +103,11 @@ jobs:
       pip install pytest pytest-azurepipelines
       pytest
     displayName: pytest
+  - bash: echo "##vso[task.prependpath]$CONDA/bin"
+    displayName: Add conda to PATH
+  - bash: conda create --yes --quiet --name myEnvironment
+    displayName: Create Anaconda environment
+  - bash: |
+     source activate myEnvironment
+     conda install --yes --quiet --name myEnvironment scipy
+    displayName: Install Anaconda packages
